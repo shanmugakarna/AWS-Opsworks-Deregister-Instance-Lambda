@@ -9,7 +9,7 @@ exports.handler = function (event, context) {
     if (event.source == 'aws.ec2') {
         var eventInstanceID = event.detail['instance-id'];
         if (typeof eventInstanceID == 'string') {
-            var opsWorks = new aws.OpsWorks();
+            var opsWorks = new aws.OpsWorks({region: 'us-east-1'});
             var params = { StackId: opsWorksStackID };
             opsWorks.describeInstances(params, function(err, data) {
                 if (err) {
